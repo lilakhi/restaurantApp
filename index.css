@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+} 
+
+header {
+    background-image: './images/tire.jpg';
+}
+
+#title-slide {
+    width: 350px;
+    margin: 0 auto;
+}
+
+.item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.emoji {
+    font-size: 4rem;
+}
+
+.item-info {
+    font-size: 1rem;
+    margin: 0.5rem 2rem;
+}
+
+.name {
+    font-weight: bolder;
+}
+
+.ingredients {
+    font-weight: lighter;
+}
+
+.price {
+    font-weight: bold;
+}
+
+.add-button {
+    border-radius: 100%;
+    width: 3rem;
+    height: 3rem;
+}
