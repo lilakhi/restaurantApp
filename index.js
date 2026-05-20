@@ -3,6 +3,7 @@ import { menuArray } from './data.js'
 const menu = document.getElementById ('menu-div')
 const modalDiv = document.getElementById('modal')
 const cartDiv = document.getElementById('cart')
+const cartTotalDiv = document.getElementById('cart-total')
 let cartArr = []
 
 /*
@@ -57,6 +58,39 @@ function renderMenu(){
 
 const renderCart = (items = cartArr) => {
     cartDiv.innerHTML = items
+
+//ONLY IF cartArr IS NOT EMPTY
+    if (cartArr.length > 0) {    
+//empty array for the new render. add only prices of items in cart.
+        let itemPrices = []
+// iterate over menuArray for any items 'inCart'
+        for (let item of menuArray) {
+            if (item.inCart) {
+// add the price to 'itemPrices'
+                itemPrices.push(item.price)
+            }
+        }
+        const itemsTotal = itemPrices.reduce((totalPrice, currentPrice) => totalPrice + currentPrice)
+
+
+        cartDiv.innerHTML += `
+            
+            <div id='cart-total'>
+                <h2 class="name" id="your-total">
+                    Total Price:
+                </h2>
+
+                <h3 class="price">
+                    $${itemsTotal}
+                </h3>
+            </div>
+            
+            <button id="submit-btn">Submit Order</button>
+        `
+
+
+    } else {cartDiv.innerHTML = ``}
+
 }
 
 function addToCart(itemId){
@@ -110,8 +144,7 @@ function removeFromCart(itemName) {
 // remove the item from the cart
     for (let item of cartArr) {
         if (item.includes(itemName)){
-            
-            
+// remove the item at the indexOf(item) of cartArr                       
             cartArr.splice((cartArr.indexOf(item)), 1)
         }
     }

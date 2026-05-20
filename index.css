@@ -1,3 +1,5 @@
+/* Inbuilt Classes */
+
 body {
     margin: 0;
 } 
@@ -10,6 +12,9 @@ header {
     width: 350px;
     margin: 0 auto;
 }
+
+
+/* Items and Data Classes */
 
 .item {
     display: flex;
@@ -43,6 +48,18 @@ header {
     width: 3rem;
     height: 3rem;
 }
+
+
+
+/* Cart Specific Classes */
+
+
+#cart-total {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Utility Classes */
 
 .isHidden {
     display: none;
