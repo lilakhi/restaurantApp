@@ -3,6 +3,7 @@ import { menuArray } from './data.js'
 const menu = document.getElementById ('menu-div')
 const modalDiv = document.getElementById('modal')
 const cartDiv = document.getElementById('cart')
+let cartArr = []
 
 /*
             <div class="item">
@@ -54,30 +55,29 @@ function renderMenu(){
     }
 }
 
+const renderCart = (items = cartArr) => {
+    cartDiv.innerHTML = items
+}
+
 function addToCart(itemId){
-    // find item in menu with same id as button
+// find item in menu with same id as button
     for (let item of menuArray) {
         if ((item.id == itemId) && (!item.inCart)) {
-/*            
-            console.log('item obj: ' + item)
-            console.log('item obj name: ' + item.name)
-            console.log('item obj id: ' + item.id)
-            console.log('item obj price: ' + item.price)
-            */
 
-           // check if item is alr in cart
-           item.inCart = true
+
+// check if item is alr in cart
+            item.inCart = true
            
            
-           // add name/price to cart html
-            cartDiv.innerHTML += `
+// add name/price to cart html
+            cartArr.unshift( `
 
                 <div class='cart-item'>
                     <h2 class='cart-item-name'>
                         ${item.name}
                     </h2>
 
-                    <button class='removeBtn' data-remove='${item.id}'>
+                    <button class='removeBtn' data-remove='${item.name}'>
                         remove
                     </button>
 
@@ -88,19 +88,37 @@ function addToCart(itemId){
                 </div>
             
 
-            `
-          
+            `)
+
+            renderCart()
+
         }
     }
 }
 
-function removeFromCart(itemId) {
-    for (let item of menuArray) {
-        if ((item.id == itemId) && (item.inCart)) {
-            item.inCart = false
 
+
+function removeFromCart(itemName) {
+
+// set the inCart value to false to be reAdded
+    for (let item of menuArray) {
+        if (item.name == itemName) {
+            item.inCart = false
         }
     }
+
+// remove the item from the cart
+    for (let item of cartArr) {
+        if (item.includes(itemName)){
+            
+            
+            cartArr.splice((cartArr.indexOf(item)), 1)
+        }
+    }
+
+// render the cart again to show changes
+
+    renderCart()
 
 }
 
