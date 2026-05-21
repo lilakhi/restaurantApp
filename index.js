@@ -28,7 +28,11 @@ document.addEventListener ('click', (e) => {
 
     if (e.target.dataset.itemId) {addToCart(e.target.dataset.itemId)}
     if (e.target.dataset.remove) {removeFromCart(e.target.dataset.remove)}
-
+    if (e.target.id == 'submit-btn') {renderModal()}
+    if (e.target.id == 'pay-btn') {
+        hideModal()
+        footerSuccess()
+    }
 })
 
 
@@ -57,7 +61,7 @@ function renderMenu(){
 }
 
 const renderCart = (items = cartArr) => {
-    cartDiv.innerHTML = items
+    cartDiv.innerHTML = items.join('')
 
 //ONLY IF cartArr IS NOT EMPTY
     if (cartArr.length > 0) {    
@@ -155,19 +159,30 @@ function removeFromCart(itemName) {
 
 }
 
+
+
+
+//  modal
+function renderModal() { modalDiv.classList.remove('isHidden') }
+function hideModal() { modalDiv.classList.add('isHidden') }
+
+
+// once pay button clicked footerSuccess()
+
+function footerSuccess() {
+    document.getElementById('footer').innerHTML = `
+    
+        <div id='success-page'>
+            <p id='success-msg'>
+                Thanks ((NAME_INPUT))! Your order is coming soon!
+            </p>
+        </div>
+
+    `
+}
+
 // Start the DOM
 renderMenu()
 
 
-
-// menu items add to order function
-//  function addToOrder
-// once there is items in the cart
-//  function footerTotals
-// once the submit order is done
-//  modal
-//  render modal ?? change remove isHidden class using classList
-const renderModal = () =>  modalDiv.classList.remove('isHidden')
-const hideModal = () => modalDiv.classList.add('isHidden')
-// once pay button clicked footerSuccess()
 

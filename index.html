@@ -30,10 +30,14 @@
 
         <div id="modal" class="isHidden">
             <div id="inputs">
-                <input type="text">
-                <input type="number">
-                <input type="number">
-            </div>    
+                <label for="full-name">Enter your full name:</label>
+                <input type="text" name="full-name" id="full-name" placeholder="Muhammad Abdullah" required>
+                <label for="card-number">Enter your card number:</label>
+                <input type="number" name="card-number" id="card-number" placeholder="2345232354331234" required>
+                <label for="cvv">Enter your CVV:</label>
+                <input type="number" name="cvv" id="cvv" placeholder="234" required>
+            </div> 
+            <button id="pay-btn">Pay Now</button>   
         </div>
 
 
@@ -41,7 +45,7 @@
 
     </body>
 
-    <footer>
+    <footer id="footer">
         <div id="cart">
             <!-- items here -->
         </div>
